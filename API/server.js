@@ -21,7 +21,7 @@ server.use('/api/users', userRouter);
 
 // Verifies if server is running
 server.get("/", (req, res) => {
-    res.json({ message: 'API is up and running.' });
+    res.send(`<h2>Server is responding.</h2>`);
     });
 
 module.exports = server;
