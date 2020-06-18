@@ -11,12 +11,47 @@ const { isValid } = require("../users/users-service.js");
 // -- No point in making them sign in and verify again 
 
 router.post('/register', (req, res) => {
+    const credentials = req.body;
 
-})
+    if (isValid(credentials)) {
+        const rounds = process.env.BCRYPT_ROUNDS || 6;
+        const hash = bcryptjs.hashSync(credentials.password, rounds);
+        credentials.password = hash;
+
+        Users.add(credentials)
+            .then(user => {
+                const token = genToken(saved);
+                res.status(201).json({ data: user, token });
+            })
+            .catch(Err => {
+                res.status(500).json({ data: error.message });
+            });
+    } else {
+        res.status(400).json({ errorMessage: 'Please provide username and  password.' });
+    }
+});
 
 router.post('/login', (req, res) => {
+    const { username, password } = req.body;
 
-})
+    if (isValid(req.body)) {
+        Users.findBy({ username: username })
+            then(([user]) => {
+                // -- Compares the DB stored password and hash
+                if (user && bcryptjs.compareSync(password, user.password)) {
+                    const token = generateToken(user);
+                    res.status(200).json({ message: 'Welcome to our API.', token });
+                } else {
+                    res.status(401).json({ errorMessage: 'Invalid user credentials.' });
+                }
+            })
+            .catch(err => {
+                res.status(500).json({ message: err.message });
+            });
+        } else {
+            res.status(400).json({ errorMessage: 'Please provide username and  password.'});
+        }
+});
 
 
 // -- Used as a helper method for POST /api/auth/login & POST /api/auth/register
