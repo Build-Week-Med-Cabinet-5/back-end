@@ -23,8 +23,8 @@ router.post('/register', (req, res) => {
                 const token = genToken(saved);
                 res.status(201).json({ data: user, token });
             })
-            .catch(Err => {
-                res.status(500).json({ data: error.message });
+            .catch(err => {
+                res.status(500).json({ data: err.message });
             });
     } else {
         res.status(400).json({ errorMessage: 'Please provide username and  password.' });
