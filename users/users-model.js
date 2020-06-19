@@ -23,7 +23,7 @@ function update(id, changes) {
 
 function remove(id) {
     return db('users').delete().where({ id });
-}
+};
 
 module.exports = {
     findAll, findBy, findById, add, update, remove
