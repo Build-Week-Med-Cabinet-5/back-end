@@ -15,15 +15,6 @@ router.get('/', restricted, (req, res) => {
         .catch(err => res.status(500).json({errorMessage: 'Users could not be retrieved from the server.'}));
 });
 
-// router.get('/id/recommendation', (req, res) => {
-
-// });
-
-// router.post('/:id/recommendation', (req, res) => {
-
-// });
-
-// Update user by ID
 router.put('/:id', (req, res) => {
     Users.update(req.params.id, req.body)
         .then(user => {
