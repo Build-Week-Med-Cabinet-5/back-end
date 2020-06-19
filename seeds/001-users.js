@@ -8,43 +8,43 @@ exports.seed = function(knex) {
         first_name: 'Seth',
         last_name: 'Nelson',
         email: 'sethn@medcab.com',
-        password: 'snmed1',
+        password: bcrypt.hashSync('snmed1', 8)
       },
       {
         first_name: 'John',
         last_name: 'Daily',
         email: 'johnd@medcab.com',
-        password: 'jdmed2',
+        password: bcrypt.hashSync('jdmed2', 8)
       },
       {
         first_name: 'Amy',
         last_name: 'Beisel',
         email: 'amyb@medcab.com',
-        password: 'abmed3',
+        password: bcrypt.hashSync('abmed3', 8)
       },
       {
         first_name: 'Regina',
         last_name: 'Dircio',
         email: 'reginad@medcab.com',
-        password: 'rdmed4',
+        password: bcrypt.hashSync('rdmed4', 8)
       },
       {
         first_name: 'Matthew',
         last_name: 'Martin',
         email: 'matthewm@medcab.com',
-        password: 'mmmed5',
+        password: bcrypt.hashSync('mmmed5', 8)
       },
       {
         first_name: 'Nicholas',
         last_name: 'Chikuji',
         email: 'nicholasc@medcab.com',
-        password: 'ncmed6',
+        password: bcrypt.hashSync('ncmed6', 8)
       },
       {
         first_name: 'Tony',
         last_name: 'Odele',
         email: 'tonyo@medcab.com',
-        password: 'tomed7',
+        password: bcrypt.hashSync('tomed7', 8)
       },
       
     ]);
