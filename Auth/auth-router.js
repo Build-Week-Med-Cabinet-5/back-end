@@ -37,7 +37,7 @@ router.post('/login', (req, res) => {
             .first()
             .then(user => {
                 // -- Compares the DB stored password and hash
-                if (user && bcryptjs.compareSync(password, user.password)) {
+                if (user && bcrypt.compareSync(password, user.password)) {
                     // Give user a token
                     const token = generateToken(user);
                     res.status(200).json({ message: `Welcome to med-cabinet, ${user.first_name}.`, token });
