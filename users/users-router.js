@@ -30,13 +30,14 @@ router.get('/:id', (req, res) => {
 
 // POST new user
 // **WORKS**
-router.post('/', (req, res) => {
-    const newUser = req.body
+// -- NOT NEEDED SINCE IT'S NOT ENCRYPTED -- //
+// router.post('/', (req, res) => {
+//     const newUser = req.body
 
-    Users.add(newUser)
-        .then((user => res.status(200).json({ message: 'The user has been added.', user})))
-        .catch(() => res.status(400).json({ message: 'Make sure the user has a first name, last name, email, and password.' }));
-});
+//     Users.add(newUser)
+//         .then((user => res.status(200).json({ message: 'The user has been added.', user})))
+//         .catch(() => res.status(400).json({ message: 'Make sure the user has a first name, last name, email, and password.' }));
+// });
 
 // UPDATE users by id
 
