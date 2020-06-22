@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Build-Week-Med-Cabinet-5/back-end#readme",
   "devDependencies": {
+    "jest": "^26.0.1",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
