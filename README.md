@@ -15,17 +15,17 @@ Topics:
 
 ### This Database is structured as follows:
 
-           ------------------------ DB ---------------------
-           |                                               |
-      -----------users-----------------------              |
-      |           |           |             |              |
- first_name   last_name     email        password          |
-                                                           |
-      ---------------------------recommended--------------------------
-      |          |          |           |           |          |
-desired_effects  |  recommended_rating  |  recommended_flavor  |
-                 |                      |                      |
-  recommended_strain   recommended_strain_effects   recommended_description
+>           ------------------------ DB ---------------------
+>           |                                               |
+>      -----------users-----------------------              |
+>      |           |           |             |              |
+> first_name   last_name     email        password          |
+>                                                           |
+>      ---------------------------recommended--------------------------
+>      |          |          |           |           |          |
+>desired_effects  |  recommended_rating  |  recommended_flavor  |
+>                 |                      |                      |
+>  recommended_strain   recommended_strain_effects   recommended_description
 
 
 ### (more information here)
