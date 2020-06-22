@@ -16,7 +16,7 @@ router.get('/:id/recommendations', (req, res) => {
                 res.status(200).json(recommendation);
             }
         })
-        .catch(err => res.status(500).json({ errorMessage: 'Could not retrieve user recommendation', err});
+        .catch(err => res.status(500).json({ errorMessage: 'Could not retrieve user recommendation', err}));
 });
 
 // POST user recommendation by ID
@@ -24,7 +24,7 @@ router.get('/:id/recommendations', (req, res) => {
 router.post('/:id/recommendations', (req, res) => {
     Recommendations.add(recommendation)
         .then(recommendation => {
-            
+
         })
 });
 
