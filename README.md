@@ -1,4 +1,4 @@
-# Back End Endpoints-----------------------------------------------------
+# Back End Endpoints----------------------------------------------
 
 Topics:
 
@@ -6,10 +6,10 @@ Topics:
 * User Endpoints
 * Recommendation Endpoints
 
-**⚠️ This is documentation for explaining steps and processes for using this database, as well as structure and practices. Please let me know if any information is missing or needed for this documentation. Editing is ongoing (see log at bottom) ⚠️**
+**⚠️ This is documentation for explaining steps and processes for using this database, as well as structure and practices. Please let me know if any information is missing or needed for this documentation. Editing is ongoing (see log at bottom)**
 
 
-# Server deployment and calls -------------------------------------------
+# Server deployment and calls ------------------------------------
 
 ## Deployed server address: (awaiting permissions at this time). Will be heroku.
 
@@ -19,20 +19,20 @@ Topics:
            |                                               |
       -----------users-----------------------              |
       |           |           |             |              |
-`first_name`  `last_name`  `email`      `password`         |
+ first_name   last_name     email        password          |
                                                            |
       ---------------------------recommended--------------------------
-      |            |          |             |              |         |
-`desired_effects`  |  `recommended_rating`  |  `recommended_flavor`  |
-                   |                        |                        |
-      `recommended_strain`  `recommended_strain_effects` `recommended_description`
+      |          |          |           |           |          |
+desired_effects  |  recommended_rating  |  recommended_flavor  |
+                 |                      |                      |
+  recommended_strain   recommended_strain_effects   recommended_description
 
 
 ### (more information here)
 
 
 
-# User Endpoints ------------------------------------------------------
+# User Endpoints ---------------------------------------------------
 
 ## Structure for requests are as follows:
 
@@ -58,7 +58,7 @@ returns `user` with specific `id` with updated information.
 returns `user` being successfully deleted from the database.
 
 
-# Auth Endpoints ---------------------------------------------------------
+# Auth Endpoints --------------------------------------------------
 
 **All requests follow a /api/auth/ pattern**
 
@@ -74,16 +74,19 @@ returns a new `user` to the database.
 returns a `user` with proper credentials from the database.
 
 
-# Recommendation Endpoints -----------------------------------------------
+# Recommendation Endpoints ------------------------------------
 
 **Dev Note** This section is still being developed, and has not been deployed or tested at this time.
 
 
 
-## -- Update Log -- --------------------------------------------------------
+## -- Update Log --
 
 *Date_time_logId# & description of fix format*
 *ex: 02/18/20_9:30a_1*
 
 **06/21/20_7:40p_1**
 - Modified the auth language to be more clear.
+
+**06/21/20_9:20p_2**
+- Deleted extra icon, edited dash lengths, updated DB layout tree
