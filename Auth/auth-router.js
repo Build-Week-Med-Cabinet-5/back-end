@@ -3,39 +3,41 @@ const jwt = require('jsonwebtoken');
 const router = require('express').Router();
 
 const Users = require("../users/users-model.js");
+const { validateUser } = require('../users/user-validation.js');
 
 // -- Make sure token is returned when registered as well.
 // -- No point in making them sign in and verify again 
 
 // api/auth endpoints
 // POST authorized new user to DB
-router.post('/register', (req, res) => {
-    const user = req.body;
-    const rounds = process.env.BCRYPT_ROUNDS || 6;
-    const hash = bcrypt.hashSync(user.password, rounds);
-    user.password = hash
+router.post('/register', validateUser, (req, res) => {
+    const credentials = req.body;
 
-    Users.add(user)
-        .then(savedUser => {
-            if (savedUser) {
-                const token = generateToken(savedUser);
-                res.status(201).json({ message: 'New user has been registered successfully.', data: savedUser, token });
-            } else {
-                res.status(400).json({ errorMessage: 'Please provide email and  password.' });
-            }
-        })
-        .catch(err => {
-            res.status(500).json({ data: err.message });
-        });
+    if (validateUser(credentials)) {
+        const rounds = process.env.BCRYPT_ROUNDS || 6;
+        const hash = bcrypt.hashSync(credentials.password, rounds);
+        credentials.password = hash
+
+        Users.add(credentials)
+            .then(user => {
+                const token = generateToken(saved);
+                res.status(201).json({ message: 'New user has been registered successfully.', data: user, token });
+            })
+            .catch(err => {
+                res.status(500).json({ data: err.message });
+            })
+        } else {
+            res.status(400).json({ errorMessage: 'Please provide email and password.' });
+        }
 });
 
-router.post('/login', (req, res) => {
+// POST login existing authenticated user from db
+router.post('/login', validateUser, (req, res) => {
     const { email, password } = req.body;
 
     if (req.body) {
-        Users.findBy({ email })
-            .first()
-            .then(user => {
+        Users.findBy({ email: email })
+            .then(([user]) => {
                 // -- Compares the DB stored password and hash
                 if (user && bcrypt.compareSync(password, user.password)) {
                     // Give user a token
@@ -49,7 +51,7 @@ router.post('/login', (req, res) => {
                 res.status(500).json({ message: err.message });
             });
     } else {
-        res.status(400).json({ errorMessage: 'Please provide email and  password.'});
+        res.status(400).json({ errorMessage: 'Please provide email and password.'});
     }
 });
 

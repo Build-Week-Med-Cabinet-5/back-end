@@ -1,17 +1,18 @@
 const router = require('express').Router();
 const Users = require('./users-model.js');
+const restricted = require('../auth/restricted-middleware.js');
 
 
 // -- User endpoints here!! -- //
 
 // Get all users
 // **WORKS**
-router.get('/', (req, res) => {
+router.get('/', restricted, (req, res) => {
     Users.findAll()
         .then(users => {
             res.status(200).json(users);
         })
-        .catch(err => res.status(500).json({errorMessage: 'Users could not be retrieved from the server.'}));
+        .catch(err => res.status(500).json({errorMessage: 'Users could not be retrieved from the server.', err}));
 });
 
 // GET user by ID

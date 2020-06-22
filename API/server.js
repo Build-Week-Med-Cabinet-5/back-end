@@ -7,7 +7,6 @@ const helmet = require('helmet');
 const authRouter = require('../auth/auth-router.js');
 const userRouter = require('../users/users-router.js');
 const recommendationsRouter = require('../recommendations/recommendations-router.js');
-const restrictedMiddleware = require('../auth/restricted-middleware.js');
 
 const server = express();
 
@@ -17,7 +16,7 @@ server.use(express.json());
 
 // -- Add web routes here --- //
 server.use('/api/auth', authRouter);
-server.use('/api/users',restrictedMiddleware, userRouter, recommendationsRouter);
+server.use('/api/users', userRouter, recommendationsRouter);
 
 // Displays message in body if server is running
 server.get("/", (req, res) => {

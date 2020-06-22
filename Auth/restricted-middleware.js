@@ -8,20 +8,19 @@ const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
     const { authorization } = req.headers;
+    const secret = process.env.JWT_SECRET;
 
     if (authorization) {
-        const secret = process.env.JWT_SECRET || 'air is a liquid';
 
-        jwt.verify(authorization, secret, function(err, decodedToken) {
+        jwt.verify(authorization, secret, (err, decodedToken) => {
             if (err) {
                 res.status(401).json({ errorMessage: 'Token is invalid.' });
             } else {
                 req.token = decodedToken;
-
                 next();
             }
         });
     } else {
-        res.status(400).json({ errorMessage: 'Please login and try again.' })
+        res.status(400).json({ errorMessage: 'Please login and try again. No authorization header.' })
     }
 };
