@@ -20,7 +20,7 @@ router.post('/register', (req, res) => {
 
         Users.add(credentials)
             .then(user => {
-                const token = generateToken(saved);
+                const token = generateToken(user);
                 res.status(201).json({ message: 'New user has been registered successfully.', data: user, token });
             })
             .catch(err => {
