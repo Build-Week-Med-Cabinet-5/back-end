@@ -1,6 +1,6 @@
 // Update with your config settings.
 
-require('dotenv').config();
+const pgConnection = process.env.DATABASE_URL || "postgresql://postgres@localhost/users";
 
 module.exports = {
   
@@ -37,7 +37,8 @@ module.exports = {
 
   production: {
     client: 'pg',
-    connection: process.env.DB_URL,
+    connection: pgConnection,
+    // process.env.DB_URL
     migrations: {
       directory: './database/migrations',
     },
