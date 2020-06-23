@@ -10,7 +10,7 @@ const { validateUser } = require('../users/user-validation.js');
 
 // api/auth endpoints
 // POST authorized new user to DB
-router.post('/register', validateUser, (req, res) => {
+router.post('/register', (req, res) => {
     const credentials = req.body;
 
     if (validateUser(credentials)) {
