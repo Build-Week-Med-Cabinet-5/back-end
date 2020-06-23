@@ -1,7 +1,5 @@
 const router = require('express').Router();
 const Users = require('./users-model.js');
-// const restricted = require('../auth/restricted-middleware.js');
-// const { findAll } = require('./users-model.js');
 
 
 // -- User endpoints here!! -- //
@@ -30,13 +28,14 @@ router.get('/:id', (req, res) => {
 
 // POST new user
 // **WORKS**
-router.post('/', (req, res) => {
-    const newUser = req.body
+// -- NOT NEEDED SINCE IT'S NOT ENCRYPTED -- //
+// router.post('/', (req, res) => {
+//     const newUser = req.body
 
-    Users.add(newUser)
-        .then((user => res.status(200).json({ message: 'The user has been added.', user})))
-        .catch(() => res.status(400).json({ message: 'Make sure the user has a first name, last name, email, and password.' }));
-});
+//     Users.add(newUser)
+//         .then((user => res.status(200).json({ message: 'The user has been added.', user})))
+//         .catch(() => res.status(400).json({ message: 'Make sure the user has a first name, last name, email, and password.' }));
+// });
 
 // UPDATE users by id
 
@@ -63,14 +62,14 @@ router.delete('/:id', (req, res) => {
     Users.remove(id)
         .then(id => {
             if (id === 0) {
-                res.status(400).json({ errorMessage: 'The user could not be deleted.'})
+                res.status(400).json({ errorMessage: 'The user with that id does not exist.'})
             } else {
                 res.status(200).json({ message: 'The user has been deleted.'});
             }
         })
         .catch(err => {
             console.log(error);
-            res.status(500).json({ errorMessage: 'Error removing the user.' });
+            res.status(500).json({ errorMessage: 'Error removing the user.', err });
         });
 });
 

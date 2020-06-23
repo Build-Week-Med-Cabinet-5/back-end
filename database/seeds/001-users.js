@@ -45,7 +45,7 @@ exports.seed = function(knex) {
         last_name: 'Odele',
         email: 'tonyo@medcab.com',
         password: bcrypt.hashSync('tomed7', 8)
-      },
+      }
       
     ]);
 };
