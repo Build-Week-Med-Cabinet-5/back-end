@@ -6,7 +6,7 @@ const restricted = require('../auth/tokenValidation.js');
 // -- User endpoints here!! -- //
 
 // Get all users
-// **WORKS**
+// **Works with no restricted, doesn't work with**
 router.get('/', restricted, (req, res) => {
     Users.findAll()
         .then(users => {
