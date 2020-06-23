@@ -32,12 +32,13 @@ router.post('/register', validateUser, (req, res) => {
 });
 
 // POST login existing authenticated user from db
-router.post('/login', validateUser, (req, res) => {
+router.post('/login', (req, res) => {
     const { email, password } = req.body;
 
     if (req.body) {
-        Users.findBy({ email: email })
-            .then(([user]) => {
+        Users.findBy({ email })
+            .first()
+            .then(user => {
                 // -- Compares the DB stored password and hash
                 if (user && bcrypt.compareSync(password, user.password)) {
                     // Give user a token
@@ -51,7 +52,7 @@ router.post('/login', validateUser, (req, res) => {
                 res.status(500).json({ message: err.message });
             });
     } else {
-        res.status(400).json({ errorMessage: 'Please provide email and password.'});
+        res.status(400).json({ errorMessage: 'Please provide email and  password.'});
     }
 });
 
