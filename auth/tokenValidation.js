@@ -7,26 +7,21 @@ const jwt = require('jsonwebtoken');
 // 3) Not expired (time limit based on options)
 
 module.exports = (req, res, next) => {
+    const { authorization } = req.headers
 
-    try {
-        const secret = process.env.JWT_SECRET
-        const token = req.headers.authorization.split(' ')[1];
+    if (authorization) {
+        const secret = process.env.JWT_SECRET || 'air is a liquid';
 
-        if (token) {
-            jwt.verify(token, secret, (err, decodedToken) => {
-                if (err) {
-                    res.status(401).json({ errorMessage: 'Token is invalid.' });
-                } else {
-                    req.decodedJwt = decodedToken;
-                    console.log(req.decodedJwt);
-                    next();
-                }
-            })
-        } else {
-            throw new error('Invalid auth data');
-        }
-    } catch (err) {
-        res.status(401).json({ error: err.message });
+        //verify if token is valid
+        jwt.verify(authorization, secret, function(error, decodedToken) {
+            if (error) {
+                res.status(401).json({ error: 'Token is invalid.' })
+            } else {
+                req.token = decodedToken;
+                next();
+            }
+        });
+    } else {
+        res.status(404).json({ error: 'Please login first to access this information.' });
     }
-
 };

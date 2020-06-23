@@ -11,7 +11,15 @@ Topics:
 
 # Server deployment and calls ------------------------------------
 
-## Deployed server address: (awaiting permissions at this time). Will be heroku.
+## Deployed server address: 
+https://med-cab-pg-db.herokuapp.com/
+
+# Variations:
+/api/users
+/api/users/:id
+/api/users/:id/recommendations
+/api/auth/register
+/api/auth/login
 
 ### This Database is structured as follows:
 
