@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const Recommendations = require('./recommendations-model.js');
+const Recommendations = require('./users-strain-recommendations-model.js');
+const usersStrainRecommendationsModel = require('./users-strain-recommendations-model.js');
 
 
 // -- Recommenation endpoints here!! -- //
@@ -22,10 +23,13 @@ router.get('/:id/recommendations', (req, res) => {
 // POST user recommendation by ID
 // untested
 router.post('/:id/recommendations', (req, res) => {
-    Recommendations.add(recommendation)
-        .then(recommendation => {
-
+    const recommendations = { user_id: parseInt(req.params.id), ...req.body }
+    return Recommendations.add(recommendations)
+        .then(async () => {
+            const strain = await usersStrainRecommendationsModel.findByUserId({ id: recommendations.strain_id }).first()
+            res.status(201).json({ message: `The strain ${strain.strain} has been added.`, recommendations });
         })
+        .catch(err => console.log(500).json({ errorMessage: 'Error adding the recommendation.', err }));
 });
 
 // DELETE user recommendation by ID
