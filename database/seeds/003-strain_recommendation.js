@@ -1,13 +1,22 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('strain_recommendation').del()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+      return knex('strain_recommendation').insert([
+        {
+          user_id: 1,
+          name: 'Chocolate Gold'
+        },
+        {
+          user_id: 2,
+          name: 'Blueberry Yum Yum'
+        },
+        {
+          user_id: 3,
+          name: 'Sky High'
+        },
       ]);
     });
 };

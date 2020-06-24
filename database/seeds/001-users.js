@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 
 // 000-cleanup cleans all existing tables
 exports.seed = function(knex) {
+  
     // Inserts seed entries
     return knex('users').insert([
       {
