@@ -27,7 +27,7 @@ router.post('/register', (req, res) => {
                 res.status(500).json({ data: err.message });
             })
         } else {
-            res.status(400).json({ errorMessage: 'Please provide email and password.' });
+            res.status(400).json({ errorMessage: 'Please provide first name, last name, email, and password.' });
         }
 });
 
