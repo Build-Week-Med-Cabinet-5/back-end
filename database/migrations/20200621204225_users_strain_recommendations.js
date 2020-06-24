@@ -2,9 +2,15 @@
 exports.up = function(knex) {
     return knex.schema
         .createTable('users_strain_recommendations', tbl => {
-            tbl.integer('user_id');
-            tbl.integer('strain_id', 128)
-                .notNullable();
+            tbl.primary(['user_id', 'strain_id']);
+            tbl.integer('user_id')
+                .notNullable()
+                .references('id')
+                .inTable('users');
+            tbl.integer('strain_id')
+                .notNullable()
+                .references('id')
+                .inTable('strains');
         })
 };
 

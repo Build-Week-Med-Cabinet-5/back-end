@@ -8,7 +8,7 @@ const Recommendations = require('./recommendations-model.js');
 // untested
 router.get('/:id/recommendations', (req, res) => {
     Recommendations
-        .findByUserId(req.params)
+        .findByUserId(req.params.id)
         .then(recommendation => {
             if (typeof recommendation === 'undefined') {
                 res.status(404).json({ message: 'Recommendation could not be found.' });

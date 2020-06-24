@@ -4,7 +4,8 @@ exports.up = function(knex) {
         .createTable('strain_recommendation', tbl => {
             tbl.increments('id');
             tbl.integer('user_id');
-            tbl.string('name');
+            tbl.string('strain')
+                .notNullable();
         })
 };
 

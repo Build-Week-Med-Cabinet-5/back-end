@@ -7,15 +7,15 @@ exports.seed = function(knex) {
       return knex('strain_recommendation').insert([
         {
           user_id: 1,
-          name: 'Chocolate Gold'
+          strain: 'Chocolate Gold'
         },
         {
           user_id: 2,
-          name: 'Blueberry Yum Yum'
+          strain: 'Blueberry Yum Yum'
         },
         {
           user_id: 3,
-          name: 'Sky High'
+          strain: 'Sky High'
         },
       ]);
     });
