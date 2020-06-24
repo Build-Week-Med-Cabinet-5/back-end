@@ -3,8 +3,7 @@ exports.up = function(knex) {
     return knex.schema
         .createTable('strain_recommendation', tbl => {
             tbl.increments('id');
-            tbl.integer('user_id');
-            tbl.string('strain')
+            tbl.string('strain', 100)
                 .notNullable();
         })
 };
