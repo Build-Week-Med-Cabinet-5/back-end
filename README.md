@@ -15,11 +15,11 @@ Topics:
 https://med-cab-pg-db.herokuapp.com/
 
 # Variations:
-/api/users
-/api/users/:id
-/api/users/:id/recommendations
-/api/auth/register
-/api/auth/login
+- /api/users
+- /api/users/:id
+- /api/users/:id/recommendations
+- /api/auth/register
+- /api/auth/login
 
 ### This Database is structured as follows:
 
@@ -49,7 +49,7 @@ https://med-cab-pg-db.herokuapp.com/
 
 *User router endpoints*
 
-#### GET request for user by id
+#### GET request for all users
 `/api/users`
 returns all `users` in the database.
 

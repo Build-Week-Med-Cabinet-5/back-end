@@ -6,14 +6,15 @@ const jwt = require('jsonwebtoken');
 // 2) Is valid
 // 3) Not expired (time limit based on options)
 
-module.exports = (req, res, next) => {
-    const { authorization } = req.headers
+function authenticate(req, res, next) {
+    // const { authorization } = req.headers
+    const token = req.get('Authorization');
 
-    if (authorization) {
+    if (token) {
         const secret = process.env.JWT_SECRET || 'air is a liquid';
 
         //verify if token is valid
-        jwt.verify(authorization, secret, function(error, decodedToken) {
+        jwt.verify(token, secret, function(error, decodedToken) {
             if (error) {
                 res.status(401).json({ error: 'Token is invalid.' })
             } else {
@@ -22,6 +23,8 @@ module.exports = (req, res, next) => {
             }
         });
     } else {
-        res.status(404).json({ error: 'Please login first to access this information.' });
+        res.status(404).json({ error: 'Please login first to access this information.', });
     }
 };
+
+module.exports = authenticate;
