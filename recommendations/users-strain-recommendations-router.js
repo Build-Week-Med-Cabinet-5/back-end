@@ -24,10 +24,10 @@ router.get('/:id/recommendations', (req, res) => {
 // untested
 router.post('/:id/recommendations', (req, res) => {
     const recommendations = { user_id: parseInt(req.params.id), ...req.body }
-    return Recommendations.add(recommendations)
+    return Recommendations.add(recommendation)
         .then(async () => {
             const strain = await usersStrainRecommendationsModel.findByUserId({ id: recommendations.strain_id }).first()
-            res.status(201).json({ message: `The strain ${strain.strain} has been added.`, recommendations });
+            res.status(201).json({ message: `The strain ${strain.strain} has been added.`, recommendation });
         })
         .catch(err => console.log(500).json({ errorMessage: 'Error adding the recommendation.', err }));
 });
