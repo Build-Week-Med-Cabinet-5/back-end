@@ -77,9 +77,16 @@ returns `user` being successfully deleted from the database.
 `/api/auth/register`
 returns a new `user` to the database.
 
+`Required data format:`
+{ first_name: 'Bob', last_name: 'Marks', email: 'bobm@gmail.com', password: 'goodpassword1' };
+(currently no hard password requirements for BE, just all strings)
+
 #### POST request for a user login
 `/api/auth/login`
 returns a `user` with proper credentials from the database.
+
+`Required data format:`
+{ email: 'bobm@gmail.com', password: 'goodpassword1' };
 
 
 # Recommendation Endpoints ------------------------------------
@@ -98,3 +105,6 @@ returns a `user` with proper credentials from the database.
 
 **06/21/20_9:20p_2**
 - Deleted extra icon, edited dash lengths, updated DB layout tree
+
+**06/23/20_6:50p_3**
+- Added language for GET request params and data formats

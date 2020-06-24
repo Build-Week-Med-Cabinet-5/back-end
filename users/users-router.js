@@ -17,7 +17,7 @@ router.get('/', authenticate, (req, res) => {
 
 // GET user by ID
 // **WORKS**
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticate, (req, res) => {
     const { id } = req.params
 
     Users.findById(id)
@@ -40,7 +40,7 @@ router.get('/:id', (req, res) => {
 
 // UPDATE users by id
 
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticate, (req, res) => {
     Users.update(req.params.id, req.body)
         .then(user => {
             if (user) {
@@ -57,7 +57,7 @@ router.put('/:id', (req, res) => {
 
 // Delete user by ID
 // **WORKS**
-router.delete('/:id', (req, res) => {
+router.delete('/:id', authenticate, (req, res) => {
     const { id } = req.params
 
     Users.remove(id)
