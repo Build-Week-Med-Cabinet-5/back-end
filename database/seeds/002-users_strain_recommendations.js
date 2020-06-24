@@ -1,7 +1,7 @@
 
 exports.seed = function(knex) {
   // Inserts seed entries
-    return knex('recommendations').insert([
+    return knex('users_strain_recommendations').insert([
       {
         user_id: 1, 
         strain_id: 4

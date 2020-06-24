@@ -19,7 +19,7 @@ server.use("/api/users", userRouter, recommendationsRouter);
 
 // Displays message in body if server is running
 server.get("/", (req, res) => {
-  res.send(`<h2>Server is responding.</h2>`);
+    res.send(`<h2>Server is responding.</h2>`);
 });
 
 module.exports = server;
