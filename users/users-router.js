@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const Users = require('./users-model.js');
-const restricted = require('../auth/tokenValidation.js');
+const authenticate = require('../auth/tokenValidation.js');
 
 
 // -- User endpoints here!! -- //
 
 // Get all users
 // **Works with no restricted, doesn't work with**
-router.get('/', restricted, (req, res) => {
+router.get('/', authenticate, (req, res) => {
     Users.findAll()
         .then(users => {
             res.status(200).json(users);
