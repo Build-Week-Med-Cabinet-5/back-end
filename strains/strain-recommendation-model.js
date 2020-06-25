@@ -2,16 +2,16 @@ const db = require('../database/dbConfig.js');
 
 
 const find = () => {
-    return db('strain-recommendation');
+    return db('strain_recommendation');
 };
 
 const findBy = property => {
-    return db('strain-recommendation')
+    return db('strain_recommendation')
         .where(property)
 };
 
 function add(strain) {
-    return db('strain-recommendation').insert(strain).returning('*');
+    return db('strain_recommendation').insert(strain).returning('*');
 };
 
 
