@@ -33,7 +33,7 @@ router.post('/register', (req, res) => {
 
 // POST login existing authenticated user from db
 router.post('/login', (req, res) => {
-    const { email, password } = req.body;
+    const { email, password, id } = req.body;
 
     if (req.body) {
         Users.findBy({ email })
@@ -43,7 +43,7 @@ router.post('/login', (req, res) => {
                 if (user && bcrypt.compareSync(password, user.password)) {
                     // Give user a token
                     const token = generateToken(user);
-                    res.status(200).json({ message: `Welcome to med-cabinet, ${user.first_name}.`, token });
+                    res.status(200).json({ message: `Welcome to med-cabinet, ${user.first_name}.`, token, id });
                 } else {
                     res.status(401).json({ errorMessage: 'Invalid credentials, please try again.' });
                 }
