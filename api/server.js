@@ -5,8 +5,7 @@ const helmet = require("helmet");
 // -- add auth routers -- //
 const authRouter = require("../auth/auth-router");
 const userRouter = require("../users/users-router.js");
-// const usersRecommendationsRouter = require("../recommendations/users-strain-recommendations-router.js");
-// const strainRecommendationRouter = require('');
+const strainRecommendationRouter = require('../strains/strain-recommendation-router.js');
 
 const server = express();
 
@@ -17,6 +16,7 @@ server.use(express.json());
 // -- Add web routes here --- //
 server.use("/api/auth", authRouter);
 server.use("/api/users", userRouter);
+server.use("/api/strain_recommendations", strainRecommendationRouter);
 
 // Displays message in body if server is running
 server.get("/", (req, res) => {
