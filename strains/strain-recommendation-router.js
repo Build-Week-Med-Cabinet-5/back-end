@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
     Strains
         .add(req.body)
         .then(strain => res.status(200).json(strain))
-        .catch(err => res.status(500).json({ message: 'The strain could not be added.' }));
+        .catch(err => res.status(500).json({ message: 'The strain could not be added.', err }));
 });
 
 

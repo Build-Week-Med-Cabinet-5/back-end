@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Users = require('./users-model.js');
+const Recommendations = require('../recommendations/users-strain-recommendations-model.js');
 const authenticate = require('../auth/tokenValidation.js');
 
 
@@ -27,18 +28,28 @@ router.get('/:id', authenticate, (req, res) => {
         .catch(err => res.status(500).json({errorMessage: 'Users could not be retrieved from the server.'}));
 });
 
-// POST new user
-// **WORKS**
-// -- NOT NEEDED SINCE IT'S NOT ENCRYPTED -- //
-// router.post('/', (req, res) => {
-//     const newUser = req.body
+router.get('/:id/recommendations', (req, res) => {
+    Recommendations
+        .findByUserId(req.params.id)
+        .then(recommendation => {
+            if (recommendation.length) {
+                res.status(200).json(recommendation)
+            } else {
+                res.status(404).json({ message: 'Recommendations could not be found.' });
+            }
+        })
+        .catch(error => res.status(500).json({ message: 'Error getting the user recommendations', error }));
+});
 
-//     Users.add(newUser)
-//         .then((user => res.status(200).json({ message: 'The user has been added.', user})))
-//         .catch(() => res.status(400).json({ message: 'Make sure the user has a first name, last name, email, and password.' }));
-// });
-
-// UPDATE users by id
+router.post('/:id/recommendations', (req, res) => {
+    const recommendations = { user_id: parseInt(req.params.id), ...req.body }
+    return Recommendations.add(recommendation)
+        .then(async () => {
+            const strain = await usersStrainRecommendationsModel.findByUserId({ id: recommendations.strain_id }).first()
+            res.status(201).json({ message: `The strain ${strain.strain} has been added.`, recommendation });
+        })
+        .catch(err => console.log(500).json({ errorMessage: 'Error adding the recommendation.', err }));
+});
 
 router.put('/:id', authenticate, (req, res) => {
     Users.update(req.params.id, req.body)
