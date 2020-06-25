@@ -19,7 +19,6 @@ function authenticate(req, res, next) {
                 res.status(401).json({ error: 'Token is invalid.' })
             } else {
                 req.token = decodedToken;
-                user;
                 next();
             }
         });
