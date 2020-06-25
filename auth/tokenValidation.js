@@ -14,11 +14,12 @@ function authenticate(req, res, next) {
         const secret = process.env.JWT_SECRET || 'air is a liquid';
 
         //verify if token is valid
-        jwt.verify(token, secret, function(error, decodedToken) {
+        jwt.verify({ token, secret, function(error, decodedToken) {
             if (error) {
                 res.status(401).json({ error: 'Token is invalid.' })
             } else {
                 req.token = decodedToken;
+                user;
                 next();
             }
         });
