@@ -8,7 +8,7 @@ module.exports = {
     client: 'sqlite3',
     useNullAsDefault: true, // needed for sqlite
     connection: {
-      filename: './dev_med_cab.db3'
+      filename: './database/dev_med_cab.db3'
     },
     migrations: { directory: './database/migrations' },
     seeds: { directory: './database/seeds' },
