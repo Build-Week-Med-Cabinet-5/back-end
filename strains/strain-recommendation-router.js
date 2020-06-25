@@ -6,7 +6,7 @@ const Strains = require('./strain-recommendation-model');
 
 // GET user strains
 // untested
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
     Strains
         .find()
         .then(strains => res.status(200).json(strains))
