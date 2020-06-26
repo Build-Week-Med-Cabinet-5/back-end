@@ -15,10 +15,10 @@ router.get('/', authenticate,  (req, res) => {
 });
 
 router.get('/:id', authenticate,  (req, res) => {
-const { id: user_id } = req.params;
+const { user_id: id } = req.params;
 
     Strains
-        .findById(user_id)
+        .findById(id)
         .then(strains => res.status(200).json(strains))
         .catch(err => res.status(500).json({ message: 'Error with the request.', err }));
 });
@@ -27,6 +27,7 @@ const { id: user_id } = req.params;
 // untested
 
 router.post('/', authenticate, (req, res) => {
+    
     Strains
         .add(req.body)
         .then(strain => res.status(200).json(strain))
