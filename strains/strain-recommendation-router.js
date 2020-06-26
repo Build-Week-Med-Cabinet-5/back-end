@@ -15,7 +15,7 @@ router.get('/', authenticate,  (req, res) => {
 });
 
 router.get('/:id', authenticate,  (req, res) => {
-const { user_id: id } = req.params;
+const { id } = req.params;
 
     Strains
         .findById(id)
@@ -26,11 +26,13 @@ const { user_id: id } = req.params;
 // POST user strains
 // untested
 
-router.post('/', authenticate, (req, res) => {
+router.post('/:id', authenticate, (req, res) => {
+    const { id } = req.params;
+    const user_id = id;
     
     Strains
         .add(req.body)
-        .then(strain => res.status(200).json(strain))
+        .then(strain => res.status(200).json(strain, user_id))
         .catch(err => res.status(500).json({ message: 'The strain could not be added.', err }));
 });
 
