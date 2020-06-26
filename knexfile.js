@@ -27,12 +27,17 @@ module.exports = {
   },
 
   testing: {
-    client: 'pg',
-    connection: process.env.DB_URL,
+    client: 'sqlite3',
+    useNullAsDefault: true,
+    connection: {
+      filename: './database/dev_med_cab_test.db3',
+    },
     migrations: {
       directory: './database/migrations',
     },
-    seeds: { directory: './database/seeds' },
+    seeds: { 
+      directory: './database/seeds' 
+    },
   },
 
   production: {
