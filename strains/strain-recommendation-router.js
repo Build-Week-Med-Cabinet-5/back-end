@@ -26,7 +26,7 @@ const { id } = req.params;
 // POST user strains
 // untested
 
-router.post('/:id', authenticate, (req, res) => {
+router.post('/', authenticate, (req, res) => {
     Strains
         .add(req.body)
         .then(strain => res.status(200).json(strain))

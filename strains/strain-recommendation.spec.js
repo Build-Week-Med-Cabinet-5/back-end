@@ -13,9 +13,9 @@ describe('strains model', () => {
         it('Insert the strains into the db', async () => {
 
             await Strains.add({ strain: 'Cali Cookie Kush' });
-            await Strains.add({ strain: 'Blueberry yum yum' });
+            await Strains.add({ strain: 'Purple Haze' });
 
-            const strains = await db('strains');
+            const strains = await db('strain_recommendation');
 
             expect(strains).toHaveLength(2);
         });

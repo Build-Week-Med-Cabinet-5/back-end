@@ -19,7 +19,7 @@ describe('server.js', () => {
         it('return JSON object from the base route', async () => {
             const response = await request(server).get('/');
 
-            expect(response.type).toEqual('application/json');
+            expect(response.type).toEqual('text/html');
         });
     });
 });
