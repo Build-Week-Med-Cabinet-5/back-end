@@ -9,8 +9,8 @@ const findBy = property => {
     return db('strain_recommendation').where(property)
 };
 
-function findById(user_id) {
-    return db('strain_recommendation').where({ user_id }).first()
+function findById(id) {
+    return db('strain_recommendation').where({ id }).first()
 };
 
 function add(strain) {
