@@ -37,7 +37,8 @@ router.post('/', authenticate, (req, res) => {
 router.delete('/:id', authenticate, (req, res) => {
     const { id } = req.params
 
-    Users.remove(id)
+    Strains
+        .remove(id)
         .then(id => {
             if (id === 0) {
                 res.status(400).json({ errorMessage: 'The strain with that id does not exist.'})
