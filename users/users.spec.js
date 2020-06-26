@@ -10,7 +10,7 @@ describe('get users', () => {
 
         const users = await db('users');
 
-        expect(users).toHaveReturned();
+        expect(users).toBe('users');
     });
 
     it('Should retrieve user by id from the DB', async () => {

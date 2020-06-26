@@ -27,12 +27,9 @@ const { id } = req.params;
 // untested
 
 router.post('/:id', authenticate, (req, res) => {
-    const { id } = req.params;
-    const user_id = id;
-    
     Strains
         .add(req.body)
-        .then(strain => res.status(200).json(strain, user_id))
+        .then(strain => res.status(200).json(strain))
         .catch(err => res.status(500).json({ message: 'The strain could not be added.', err }));
 });
 
