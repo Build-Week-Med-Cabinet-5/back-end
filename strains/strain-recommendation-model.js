@@ -17,7 +17,11 @@ function add(strain) {
     return db('strain_recommendation').insert(strain).returning('*');
 };
 
+function remove(id) {
+    return db('strain_recommendation').delete().where({ id });
+};
+
 
 module.exports = {
-    find, findBy, findById, add
+    find, findBy, findById, add, remove
 }
