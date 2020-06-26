@@ -15,7 +15,7 @@ router.get('/', authenticate,  (req, res) => {
 });
 
 router.get('/:id', authenticate,  (req, res) => {
-const { user_id } = req.params;
+const { id: user_id } = req.params;
 
     Strains
         .findById(user_id)
