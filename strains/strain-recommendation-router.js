@@ -1,14 +1,24 @@
 const router = require('express').Router();
 const Strains = require('./strain-recommendation-model');
+const authenticate = require('../auth/tokenValidation.js');
 
 
 // -- Strain Endpoints here!! -- //
 
 // GET user strains
 // untested
-router.get('/', (req, res) => {
+router.get('/', authenticate,  (req, res) => {
     Strains
         .find()
+        .then(strains => res.status(200).json(strains))
+        .catch(err => res.status(500).json({ message: 'Error with the request.', err }));
+});
+
+router.get('/:id', authenticate,  (req, res) => {
+const { user_id } = req.params;
+
+    Strains
+        .findById(user_id)
         .then(strains => res.status(200).json(strains))
         .catch(err => res.status(500).json({ message: 'Error with the request.', err }));
 });
@@ -16,7 +26,7 @@ router.get('/', (req, res) => {
 // POST user strains
 // untested
 
-router.post('/', (req, res) => {
+router.post('/', authenticate, (req, res) => {
     Strains
         .add(req.body)
         .then(strain => res.status(200).json(strain))
