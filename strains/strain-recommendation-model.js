@@ -6,8 +6,11 @@ const find = () => {
 };
 
 const findBy = property => {
-    return db('strain_recommendation')
-        .where(property)
+    return db('strain_recommendation').where(property)
+};
+
+function findById(user_id) {
+    return db('strain_recommendation').where({ user_id }).first()
 };
 
 function add(strain) {
@@ -16,5 +19,5 @@ function add(strain) {
 
 
 module.exports = {
-    find, findBy, add
+    find, findBy, findById, add
 }
