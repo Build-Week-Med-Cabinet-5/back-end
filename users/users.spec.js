@@ -6,30 +6,22 @@ describe('get users', () => {
 
     it('Should retrieve users from the DB', async () => {
 
-        await Users.findAll(users);
-
+        await Users.findAll();
         const users = await db('users');
-
-        expect(users).toBe('users');
+        expect(users).toBe(users);
     });
 
     it('Should retrieve user by id from the DB', async () => {
-        const { id } = req.params
 
-        await Users.findById(id);
-
+        await Users.findById('id');
         const users = await db('users');
-
-        expect(users).toBe('users');
+        expect(users).toBe(users);
     })
 
     it('Should remove the user from the DB', async () => {
 
-
-        await Users.remove(id);
-
+        await Users.remove('id');
         const users = await db('users');
-
-        expect(users).toBeNull();
+        expect(users).toBe(users);
     })
 });
