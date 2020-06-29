@@ -1,26 +1,35 @@
 const db = require('../database/dbConfig.js');
-const User = require('../users/users-model.js');
-const { expectCt } = require('helmet');
+const server = require('../api/server.js');
+const request = require('supertest');
 
 
 const mockUser = {
-    first_name: 'Joe',
-    last_name: 'Johnson',
-    email: 'jj@gmail.com',
-    password: 'jjtestpassword'
+    first_name: 'Jack',
+    last_name: 'Sparrow',
+    email: 'theblackpearl@gmail.com',
+    password: 'drinkUpMeHardyJoHo'
 }
 
-describe('register new user', () => {
+describe('register and login auth functions', () => {
 
-    it('should create a new validated user', async () => {
-        const users = await db('users');
-        expect(users).toHaveLength(7);
-        await User.add(mockUser);
-        expect(await db('users')).toHaveLength(8);
+    beforeEach(async () => {
+        await db('users').truncate();
     });
 
-    it('should return the data that was inserted', async () => {
-        const createdUser = await User.add(mockUser);
-        expect(createdUser.email).toBe('jj@gmail.com');
-    })
+    it('should create a new validated user', () => request(server)
+        .post('/api/auth/register')
+        .send(mockUser)
+        .then((res) => {
+            expect(res.status).toBe(201);
+        })
+    );
+
+    it('should return a 400 error due to not enough user info', () => request(server)
+        .post('/api/auth/register')
+        .send({ first_name: 'Jeb', last_name: 'Adiah', password: 'notfunnyjeb' })
+        .then((res) => {
+            expect(res.status).toBe(400);
+        })
+    );
+
 })
